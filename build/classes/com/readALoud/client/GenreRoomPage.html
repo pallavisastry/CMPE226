@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+	xml:lang="da" lang="da">
+<head>
+<link wicket:id="stylesheet" />
+</head>
+<body>
+	<div wicket:id="headerpanel"></div>
+	<!--<div wicket:id="logoutPanel"></div>
+-->
+	<table width="1303" height="666">
+
+		<tr valign="top">
+			<td width="1090">
+				<div wicket:id="feedback"></div>
+				<form wicket:id="genreRoomForm">
+					<div>
+						<input type="submit" value="create"></input><br></br>
+						<h3>Room name:</h3>
+						<input type="text" wicket:id="roomName" /><br></br>
+						<h3>Room Description:</h3>
+						<textarea wicket:id="genreDesc" rows="6" cols="20"></textarea>
+						<br></br>
+
+
+					</div>
+				</form>
+
+				<form wicket:id="genreTypeForm">
+					Selected value is:
+					<span wicket:id="selectedValue"></span>
+					<br></br>
+					<p>Select one of the Genre Type displayed in the right panel</p>
+					<h3>Genre Type:</h3>
+					<input wicket:id="genreType" type="text"></input>
+					<br></br>
+				</form>
+			</td>
+			<td width="153"
+				style="background-color: #A7C942; width: 100px; text-align: top;">
+				<div wicket:id="genrePanel"></div>
+			</td>
+
+		</tr>
+	</table>
+
+	<div wicket:id="footerpanel"></div>
+</body>
+</html>

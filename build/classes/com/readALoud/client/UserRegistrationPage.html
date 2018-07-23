@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+	xml:lang="da" lang="da">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Registration Page</title>
+</head>
+<body>
+	<div wicket:id="feedback"></div>
+	<h1>Welcome to Registration Page</h1>
+	<h3>Please enter the following details</h3>
+
+	<form wicket:id="regForm">
+		<table>
+			<tbody>
+				<tr>
+					<th>First Name</th>
+					<td><input type="text" wicket:id="firstName" /></td>
+				</tr>
+				<tr>
+					<th>Last Name</th>
+					<td><input type="text" wicket:id="lastName" /></td>
+				</tr>
+				<tr>
+					<th>User Name</th>
+					<td><input type="text" wicket:id="userName" /></td>
+				</tr>
+				<tr>
+					<th>Email</th>
+					<td><input type="text" wicket:id="email" /></td>
+				</tr>
+				<tr>
+					<th>Password</th>
+					<td><input type="password" wicket:id="password" /></td>
+				</tr>
+				<tr>
+					<th>Repeat Password</th>
+					<td><input type="password" wicket:id="repeatPassword" /></td>
+				</tr>
+				<tr>
+					<th>Date Of Birth</th>
+					<td><input type="text" wicket:id="date" /><br></br></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td><input type="submit" value="submit" /></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td><a wicket:id="loginLink">Login</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+</body>
+</html>

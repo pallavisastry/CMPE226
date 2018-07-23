@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+	xml:lang="da" lang="da">
+<head>
+<link wicket:id="stylesheet" />
+<style type="text/css">
+#bks {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#bks td,#bks th {
+	font-size: 1em;
+	border: 1px solid #98bf21;
+	padding: 3px 7px 2px 7px;
+}
+
+#bks th {
+	font-size: 1.1em;
+	text-align: left;
+	padding-top: 5px;
+	padding-bottom: 4px;
+	background-color: #A7C942;
+	color: #ffffff;
+}
+
+#bks tr.alt td {
+	color: #000000;
+	background-color: #EAF2D3;
+}
+</style>
+
+</head>
+<body>
+	<div wicket:id="headerpanel"></div>
+
+	<table width="1303" height="666">
+		<tr valign="top">
+			<td width="1090">
+
+				<div wicket:id="feedback"></div> <!-- <h1>WELCOME TO AUTHOR ROOM</h1> -->
+				<h1>
+					Welcome <span wicket:id="firstName1">Message goes here</span> <span
+						wicket:id="lastName1">Message goes here</span><br></br>
+				</h1> <i>Last Logged in time:</i>
+			<div>
+					<span wicket:id="loginTime"></span>
+				</div> <br></br>
+				<div>
+					<a href="#" wicket:id="roomsPanelLink">My Rooms</a>
+				</div>
+
+				<form wicket:id="roomForm">
+					<div>
+						<input type="submit" value="Create new Room"></input>
+					</div>
+				</form>
+				<div>
+
+					<span wicket:id="firstName">Message goes here</span> <span
+						wicket:id="lastName">Message goes here</span> <br></br> Total
+					books Read&#32;&#61;&#32;&#35;<span wicket:id="totalBooks"></span>
+					<br></br> Total Books Written&#32;&#61;&#32;&#35;<span
+						wicket:id="totalBooksWritten"></span> <br></br> <span
+						wicket:id="totalComments"></span> <br></br>
+
+				</div>
+				<div wicket:id="authorBookPanel"></div>
+				<div wicket:id="recommendationPanel"></div>
+
+			</td>
+			<td width="153"
+				style="background-color: #A7C942; width: 100px; text-align: top;">
+				<div wicket:id="genrePanel"></div>
+			</td>
+			<td width="153"
+				style="background-color: #A7C942; width: 100px; text-align: top;">
+				<div wicket:id="authorPanel"></div>
+			</td>
+		</tr>
+	</table>
+
+	<div wicket:id="footerpanel"></div>
+</body>
+</html>

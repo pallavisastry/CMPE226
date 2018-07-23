@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<project name="Hibernate using native api (hbm)" basedir="."
+	default="start">
+	<property file="build.properties" />
+
+	<target name="start">
+		<echo>
+			Options:
+			Following are the steps to configrue and run the application. Find the
+			detailed
+			instructions in below sections.
+
+			1. Install MySQL
+			2. create schema "readaloud"
+			3. configure build.properties
+			4. ant build
+			5. ant entityloader
+			6. ant massregistration
+			7. ant bookloader
+			8. ant buildindex
+			9. ant deploy
+			10. ./tomcat-start.sh
+		</echo>
+	</target>
+
+
+	<target name="init">
+		<property name="name" value="pim" />
+		<property name="src.dir" location="${basedir}/src" />
+		<property name="test.dir" location="${basedir}/test" />
+		<property name="build.dir" location="${basedir}/classes" />
+
+		<property name="config.dir" location="${basedir}/src" />
+		<!--<property name="hibernate.dir" location="/Users/gash/Developer/hibernate/current" 
+			/> -->
+		<property name="webcontentlib.dir" location="${basedir}/WebContent/WEB-INF" />
+		<!--<property name="hibernate.dir" location="${basedir}" /> -->
+		<property name="lib.dir" location="${basedir}/lib" />
+
+		<property name="junit.jar" location="${basedir}/lib/junit.jar" />
+		<property name="tomcat-juli.jar" location="${basedir}/lib/tomcat-juli.jar" />
+		<property name="logging.jar" location="${basedir}/lib/slf4j-log4j12-1.6.1.jar" />
+
+
+		<path id="project.classpath">
+			<pathelement location="${build.dir}" />
+			<pathelement location="${junit.jar}" />
+			<pathelement location="${tomcat-juli.jar}" />
+			<pathelement location="${logging.jar}" />
+			<fileset dir="${apache.tomcat.dir}/bin/">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="${basedir}/lib">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="${webcontentlib.dir}/lib">
+				<include name="*.jar" />
+			</fileset>
+		</path>
+	</target>
+
+	<target name="clean" depends="init">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<target name="build" depends="clean">
+		<mkdir dir="${build.dir}" />
+		<copy file="${config.dir}/hibernate.cfg.xml" todir="${build.dir}" />
+		<copy file="${config.dir}/log4j.properties" todir="${build.dir}" />
+
+		<javac destdir="${build.dir}" debug="true" deprecation="false"
+			optimize="false" failonerror="true" includeantruntime="false">
+			<src path="${src.dir}" />
+			<classpath refid="project.classpath" />
+		</javac>
+		<copy todir="${build.dir}">
+			<fileset dir="${src.dir}">
+				<include name="**/*.hbm.xml" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="build.test" depends="build">
+		<javac destdir="${build.dir}" debug="true" deprecation="false"
+			optimize="false" failonerror="true" includeantruntime="false">
+			<src path="${test.dir}" />
+			<classpath refid="project.classpath" />
+		</javac>
+	</target>
+
+	<target name="test.entities" depends="build.test">
+		<junit printsummary='yes' fork='yes'>
+			<classpath refid="project.classpath" />
+
+			<formatter type="plain" />
+
+			<test name="test.readALoud.entities.EntitiesTest" haltonfailure="no"
+				outfile="result">
+				<formatter type="xml" />
+			</test>
+
+		</junit>
+	</target>
+
+	<target name="test.bookloader" depends="build.test">
+		<junit printsummary='yes' fork='yes'>
+			<classpath refid="project.classpath" />
+
+			<formatter type="plain" />
+
+			<test name="com.readALoud.entities.BookLoaderTest"
+				haltonfailure="no" outfile="result">
+				<formatter type="xml" />
+			</test>
+
+		</junit>
+	</target>
+
+
+	<target name="buildindex" depends="init">
+		<java fork="yes" maxmemory="128M" className="com.readALoud.index.IndexFiles">
+			<!--<arg line="${apache.tomcat.dir}/bin/indexDirectory"/> -->
+			<arg line="${filesToLoad.dir}" />
+			<classpath>
+				<pathelement location="${build.dir}" />
+				<fileset dir='${basedir}/lib'>
+					<include name='**/*.jar' />
+				</fileset>
+			</classpath>
+			<!-- <classpath refid="project.classpath" /> -->
+		</java>
+	</target>
+
+	<target name="bookloader" depends="init">
+		<java fork="yes" maxmemory="128M" className="com.readALoud.loader.BookLoader">
+			<arg line="${filesToLoad.dir}" />
+			<classpath>
+				<pathelement location="${build.dir}" />
+				<fileset dir='${basedir}/lib'>
+					<include name='**/*.jar' />
+				</fileset>
+			</classpath>
+			<!-- <classpath refid="project.classpath" /> -->
+		</java>
+	</target>
+
+	<target name="entityloader" depends="init">
+		<java fork="yes" maxmemory="128M" className="com.readALoud.loader.EntityLoader">
+			<classpath>
+				<pathelement location="${build.dir}" />
+				<fileset dir='${basedir}/lib'>
+					<include name='**/*.jar' />
+				</fileset>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="test.SearchFiles" depends="build.test">
+		<junit printsummary='yes' fork='yes'>
+			<classpath refid="project.classpath" />
+
+			<formatter type="plain" />
+
+			<test name="com.readALoud.index.SearchFilesTest" haltonfailure="no"
+				outfile="result">
+				<formatter type="xml" />
+			</test>
+
+		</junit>
+	</target>
+
+	<target name="war" depends="build">
+		<war destfile="${basedir}/books.war" webxml="WebContent/WEB-INF/web.xml">
+			<fileset dir="${src.dir}" />
+			<lib dir="${webcontentlib.dir}" />
+			<classes dir="${build.dir}" />
+			<lib dir="${lib.dir}" />
+		</war>
+	</target>
+
+	<target name="massregistration" depends="build.test">
+		<java fork="yes" classname="com.readALoud.massregistration.Populate">
+			<classpath refid="project.classpath" />
+		</java>
+	</target>
+
+	<target name="deploy" depends="war">
+		<copy file="${basedir}/books.war" todir="${apache.tomcat.dir}/webapps/" />
+	</target>
+
+</project>

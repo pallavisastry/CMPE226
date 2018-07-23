@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+	xml:lang="da" lang="da">
+<head>
+<title>BookPage</title>
+<link wicket:id="stylesheet" />
+<style type="text/css">
+#bks {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#bks td,#bks th {
+	font-size: 1em;
+	border: 1px solid #98bf21;
+	padding: 3px 7px 2px 7px;
+}
+
+#bks th {
+	font-size: 1.1em;
+	text-align: left;
+	padding-top: 5px;
+	padding-bottom: 4px;
+	background-color: #A7C942;
+	color: #ffffff;
+}
+
+#bks tr.alt td {
+	color: #000000;
+	background-color: #EAF2D3;
+}
+
+body {
+	background-repeat: no-repeat;
+	background-image: book_club.jpg;
+	background-position: right;
+}
+</style>
+</head>
+
+<body>
+	<div wicket:id="headerpanel"></div>
+
+	<hr />
+	<h2 wicket:id="title_book">Title</h2>
+	<table width="697" height="171" border="1" id="bks">
+		<tr class="alt">
+			<td width="140">EBook ID</td>
+			<td width="541" wicket:id="ebookID"></td>
+		</tr>
+		<tr>
+			<td>Title</td>
+			<td wicket:id="title"></td>
+		</tr>
+		<tr>
+			<td>Author</td>
+			<td wicket:id="author">&nbsp;</td>
+		</tr>
+		<tr>
+			<td>Language</td>
+			<td wicket:id="language">&nbsp;</td>
+		</tr>
+		<tr>
+			<td>Genre</td>
+			<td wicket:id="genre">&nbsp;</td>
+		</tr>
+		<tr>
+			<td>Posting Date</td>
+			<td wicket:id="postingdate">&nbsp;</td>
+		</tr>
+		<tr>
+			<td>Release Date</td>
+			<td wicket:id="releasedate">&nbsp;</td>
+		</tr>
+		<tr>
+			<td>Last Updated</td>
+			<td wicket:id="lastupdated">&nbsp;</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>Rate this:</td>
+			<td><span wicket:id="rating1"></span></td>
+		</tr>
+
+	</table>
+
+	<p>&nbsp;</p>
+	<div>
+		<form wicket:id="readForm">
+			Have you read this book?. If Yes Let us know
+			<label> <input type="submit" name="bookread" id="bookread"
+				value="I have read this Book" />
+			</label>
+		</form>
+	</div>
+	<p>&nbsp;</p>
+	Comments
+	<div wicket:id="comments">
+		<table width="696" border="1" id="bks">
+			<tr class="alt">
+				<td wicket:id="comment"></td>
+			</tr>
+		</table>
+	</div>
+
+	<form wicket:id="commentForm">
+		<label><em>Add comment</em><br /></label>
+		<textarea wicket:id="text" cols="67" rows="5">This is a comment</textarea>
+		<input type="submit" value="Comment" id="formsubmit" />
+	</form>
+
+	<p>&nbsp;</p>
+	<div wicket:id="footerpanel"></div>
+</body>
+</html>

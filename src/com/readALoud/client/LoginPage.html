@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+	xml:lang="da" lang="da">
+
+<body>
+	<table width="1081" height="507" border="0">
+		<tr>
+			<td colspan="2" style="background-color: #A7C942;">
+				<h1>Welcome to Read-a-Loud Portal</h1>
+			</td>
+		</tr>
+
+		<tr valign="top">
+			<td width="149" height="338"
+				style="background-color: #A7C942; width: 100px; text-align: top;">
+				<b>If you are an author, please check FAQ</b><br />
+			</td>
+			<td width="922"
+				style="background-color: #eeeeee; height: 200px; width: 400px; text-align: top;">
+
+				<div>
+					LogIn
+					<div wicket:id="feedback"></div>
+					<form wicket:id="loginForm">
+						<table>
+							<tbody>
+								<tr>
+									<th>Email</th>
+									<td><input type="text" wicket:id="email" /></td>
+								</tr>
+								<tr>
+									<th>Password</th>
+									<td><input type="password" wicket:id="password" /></td>
+								</tr>
+								<tr>
+									<th></th>
+									<td><input type="submit" value="submit" /></td>
+								</tr>
+							</tbody>
+						</table>
+						<a wicket:id="fpLink">Forgot Password</a>
+
+						<h4>To Register as user,please click on Register link</h4>
+						&#32;
+						<a wicket:id="regLink" style="color: #0000FF">Register</a>
+						<br></br>
+						<h3>
+							<a wicket:id="faq">FAQ</a>link
+						</h3>
+
+
+					</form>
+				</div>
+
+
+			</td>
+		</tr>
+
+		<tr>
+			<td colspan="2"
+				style="background-color: #FFA500; text-align: center;">
+				Copyright © 2012 Quintessential Koders</td>
+		</tr>
+
+	</table>
+</body>
+</html>
